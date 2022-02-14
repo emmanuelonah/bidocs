@@ -1,18 +1,27 @@
 {
-  "name": "backend",
+  "name": "mini-commerce-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "A mini commerce built using json for db mock",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Emmanuel Onah"
+  },
   "license": "ISC",
   "devDependencies": {
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "nodemon": "^2.0.15"
   },
   "dependencies": {
-    "dotenv": "^14.3.2"
+    "dotenv": "^14.3.2",
+    "express": "^4.17.2",
+    "morgan": "^1.10.0"
   }
 }
