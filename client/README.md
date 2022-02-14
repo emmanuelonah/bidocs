@@ -1,4 +1,4 @@
-# Todo Fullstack app documentation
+# Mini-eCommerce app documentation
 
 ## Available Scripts
 
