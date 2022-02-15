@@ -5,15 +5,16 @@ import { Portal } from '..';
 import { useBoolean } from 'hooks';
 import { IcnHuman } from './assets/icn-human.svg';
 import { AccessibleIcon } from '../accessible-icon/accessible-icon.component';
+import { ConfigUi } from './components/config-ui.component';
+
+// https://www.zara.com/ee/en/
 
 const IconWrapper = styled.div``;
 
-const Aside = styled.aside``;
-
-type PrimitivePortalProps = React.ComponentPropsWithoutRef<'aside'>;
+type PrimitiveAsideProps = React.ComponentPropsWithoutRef<'aside'>;
 type ConfigAccessibilityElement = React.ElementRef<'aside'>;
 
-interface ConfigAccessibilityProps extends PrimitivePortalProps {
+interface ConfigAccessibilityProps extends PrimitiveAsideProps {
   shownConfigUiOnRender?: boolean;
 }
 
@@ -36,14 +37,7 @@ const ConfigAccessibility = React.forwardRef<ConfigAccessibilityElement, ConfigA
             </AccessibleIcon>
           </IconWrapper>
         </Portal>
-
-        {shownConfigUi && (
-          <Portal>
-            <Aside {...restProps} ref={forwardedRef}>
-              Testing
-            </Aside>
-          </Portal>
-        )}
+        <ConfigUi {...restProps} ref={forwardedRef} shown={shownConfigUi} />
       </>
     );
   }
