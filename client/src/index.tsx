@@ -10,7 +10,7 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('appRoot'),
+  document.getElementById('appRoot')
 );
 
 if (__dev__) {

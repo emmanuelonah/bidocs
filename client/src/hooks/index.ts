@@ -4,3 +4,4 @@ export * from './useUniqueIds';
 export * from './useArraySize';
 export * from './useForceUpdate';
 export * from './useStateMachine';
+export * from './useVisuallyHidden';
