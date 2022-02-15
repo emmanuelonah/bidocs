@@ -1,7 +1,7 @@
 {
-  "name": "mini-commerce-backend",
+  "name": "mini-commerce-server",
   "version": "1.0.0",
-  "description": "A mini commerce built using json for db mock",
+  "description": "A mini eCommerce server",
   "main": "index.js",
   "scripts": {
     "start": "node ./src/index.js",

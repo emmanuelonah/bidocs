@@ -1,4 +1,4 @@
-# Mini-eCommerce app documentation
+# MINICOMMERCE CLIENT APP DOCUMENTATION
 
 ## Available Scripts
 
