@@ -10,7 +10,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalCss />
-      <a href="#main">Skip to main content</a>
+      <a href="#main" className="skip-content">
+        Skip to main content
+      </a>
       <p>Welcome home</p>
       <ConfigAccessibility />
     </ThemeProvider>

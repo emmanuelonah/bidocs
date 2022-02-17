@@ -12,6 +12,12 @@ function useTitle(title: string) {
       document.title = prevTitle.current;
     };
   }, [title]);
+
+  function resetTitle() {
+    document.title = prevTitle.current;
+  }
+
+  return resetTitle;
 }
 
 export { useTitle };

@@ -7,9 +7,25 @@ import { IcnHuman } from './assets/icn-human.svg';
 import { AccessibleIcon } from '../accessible-icon/accessible-icon.component';
 import { ConfigUi } from './components/config-ui.component';
 
-// https://www.zara.com/ee/en/
+const IconWrapper = styled.div`
+  background-color: #000;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease-out;
+  position: absolute;
+  z-index: 10000;
+  right: 1rem;
+  bottom: 3rem;
 
-const IconWrapper = styled.div``;
+  &:hover {
+    border: solid 1px #fff;
+    box-shadow: 0 0 0 4px rgba(51, 51, 51, 0.2);
+  }
+`;
 
 type PrimitiveAsideProps = React.ComponentPropsWithoutRef<'aside'>;
 type ConfigAccessibilityElement = React.ElementRef<'aside'>;
@@ -24,7 +40,7 @@ const ConfigAccessibility = React.forwardRef<ConfigAccessibilityElement, ConfigA
 
     return (
       <>
-        <Portal>
+        <Portal elementType="accessibilityconfig">
           <IconWrapper
             role="button"
             tabIndex={0}
@@ -33,11 +49,18 @@ const ConfigAccessibility = React.forwardRef<ConfigAccessibilityElement, ConfigA
             }, [dispatch])}
           >
             <AccessibleIcon label="Click to configure your accessibility features">
-              <IcnHuman />
+              <IcnHuman fill="#fff" />
             </AccessibleIcon>
           </IconWrapper>
         </Portal>
-        <ConfigUi {...restProps} ref={forwardedRef} shown={shownConfigUi} />
+        <ConfigUi
+          {...restProps}
+          ref={forwardedRef}
+          shown={shownConfigUi}
+          onClose={() => {
+            dispatch.falsify();
+          }}
+        />
       </>
     );
   }

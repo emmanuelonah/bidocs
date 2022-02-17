@@ -5,7 +5,7 @@ const theme = {
   },
   font: {
     fontWeights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
-    fontFamily: '',
+    fontFamily: "'Red Hat Display', sans-serif",
     fontSize: ['0.9rem', '1rem', '1.2rem'],
   },
   space: {
@@ -21,7 +21,12 @@ const theme = {
       copy: 1.5,
     },
   },
-  colors: {},
+  colors: {
+    white: {
+      light: '#fff',
+      semi: '#eee',
+    },
+  },
 } as const;
 
 export { theme };

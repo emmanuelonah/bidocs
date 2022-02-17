@@ -3,6 +3,8 @@ import { createGlobalStyle } from 'styled-components';
 import { theme } from 'utils';
 
 const GlobalCss = createGlobalStyle<{ theme: typeof theme }>`
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap');
+
     *,
     *::before,
     *::after {
@@ -22,6 +24,7 @@ const GlobalCss = createGlobalStyle<{ theme: typeof theme }>`
 
     body {
         min-height: 100%;
+        font-family: ${(props) => props.theme.font.fontFamily};
     }
 
     select,
