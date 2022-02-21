@@ -1,7 +1,7 @@
 {
-  "name": "mini-commerce-server",
+  "name": "bidocs",
   "version": "1.0.0",
-  "description": "A mini eCommerce server",
+  "description": "bidocs server app",
   "main": "index.js",
   "scripts": {
     "start": "node ./src/index.js",

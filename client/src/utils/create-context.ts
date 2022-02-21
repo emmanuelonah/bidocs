@@ -11,7 +11,7 @@ function createContext<ContextType>(displayName: string): CreateContextReturnTyp
     const context = React.useContext(Context);
 
     if (!context) {
-      throwError('useContext', "context can't be used outside its <Provider/> scope", useContext);
+      throwError(`${displayName}Error`, "context can't be used outside its <Provider/> scope", useContext);
     }
     return context;
   }

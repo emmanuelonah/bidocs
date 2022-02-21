@@ -1,6 +1,7 @@
 {
-  "name": "mini-commerce-client",
+  "name": "bidocs",
   "version": "0.1.0",
+  "description": "bidocs client app",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",

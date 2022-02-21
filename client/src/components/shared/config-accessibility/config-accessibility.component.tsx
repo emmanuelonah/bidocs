@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { Portal } from '..';
 import { useBoolean } from 'hooks';
 import { IcnHuman } from './assets/icn-human.svg';
-import { AccessibleIcon } from '../accessible-icon/accessible-icon.component';
 import { ConfigUi } from './components/config-ui.component';
+import { AccessibleIcon } from '../accessible-icon/accessible-icon.component';
 
 const IconWrapper = styled.div`
   background-color: #000;

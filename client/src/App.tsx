@@ -1,9 +1,8 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import { ConfigAccessibility } from 'components/shared';
-
 import { theme } from 'utils';
+import { Routes } from 'routes';
 import { GlobalCss } from './global.css';
 
 function App() {
@@ -13,8 +12,7 @@ function App() {
       <a href="#main" className="skip-content">
         Skip to main content
       </a>
-      <p>Welcome home</p>
-      <ConfigAccessibility />
+      <Routes />
     </ThemeProvider>
   );
 }
