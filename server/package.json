@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./src/index.js",
-    "dev": "nodemon ./src/index.js"
+    "dev": "nodemon ./src/index.js",
+    "n:lint": "npx eslint . --ext .js",
+    "y:lint": "yarn run eslint . --ext .js",
+    "n:pret": "npx prettier --write .",
+    "y:pret": "yarn prettier --write .",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": {
@@ -17,7 +22,9 @@
     "eslint": "^8.9.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "prettier": "2.5.1",
+    "husky": "^7.0.0"
   },
   "dependencies": {
     "dotenv": "^14.3.2",
