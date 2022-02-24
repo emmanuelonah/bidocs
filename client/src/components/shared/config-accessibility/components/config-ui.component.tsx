@@ -82,6 +82,20 @@ const CloseButton = styled.button`
   background-color: transparent;
   border: 0;
   color: ${(props) => props.theme.colors.white.semi};
+  transition: all 1s ease-in-out;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+
+  &:hover {
+    background-color: #fff;
+    border-radius: 50%;
+
+    & > * {
+      color: #000;
+      background-color: red;
+    }
+  }
 `;
 
 type PrimitiveAsideProps = React.ComponentPropsWithoutRef<'aside'>;
@@ -104,12 +118,9 @@ const ConfigUi = React.forwardRef<ConfigUiElement, ConfigAccessibilityProps>(({ 
     <Portal>
       <Aside {...restProp} ref={forwardedRef}>
         <RowOne>
-          <CloseButton onClick={onClose}>
-            <AccessibleIcon label="Click to close configuration modal">
-              <>&#10005;</>
-            </AccessibleIcon>
-          </CloseButton>
-
+          <AccessibleIcon label="Click to close configuration modal">
+            <CloseButton onClick={onClose}>&#10005;</CloseButton>
+          </AccessibleIcon>
           <LanguageSelector defaultValue={languages.find((lang) => lang.id === DEFAULT_LANG_ID)?.value}>
             {languages.map((lang) => (
               <option key={lang.id} value={lang.value}>
