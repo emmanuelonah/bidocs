@@ -7,7 +7,6 @@ const DISPLAY_NAME = 'IcnHuman';
 
 type PrimitiveSvgProps = React.ComponentPropsWithoutRef<'svg'>;
 type IcnHumanElement = React.ElementRef<'svg'>;
-
 interface IcnHumanProps extends PrimitiveSvgProps {
   fill?: string;
   width?: string;

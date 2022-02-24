@@ -29,7 +29,6 @@ const IconWrapper = styled.div`
 
 type PrimitiveAsideProps = React.ComponentPropsWithoutRef<'aside'>;
 type ConfigAccessibilityElement = React.ElementRef<'aside'>;
-
 interface ConfigAccessibilityProps extends PrimitiveAsideProps {
   shownConfigUiOnRender?: boolean;
 }

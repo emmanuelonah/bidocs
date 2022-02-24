@@ -1,1 +1,1 @@
-export {};
+export * from './compose-svg.component';

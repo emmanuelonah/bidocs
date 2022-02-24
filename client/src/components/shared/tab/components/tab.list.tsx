@@ -1,15 +1,15 @@
 import React from 'react';
 
 import { __dev__ } from 'utils';
+import Tab from '../tab.component';
 
 const DISPLAY_NAME = 'TabList';
 
 type PrimitiveDivProps = React.ComponentPropsWithoutRef<'div'>;
 type TabListRef = React.ElementRef<'div'>;
-
 interface TabListProps extends PrimitiveDivProps {
   label: string;
-  children: React.ReactElement[] | React.ReactElement;
+  children: typeof Tab | typeof Tab[];
 }
 
 const TabList = React.forwardRef<TabListRef, TabListProps>((props, forwardedRef) => {

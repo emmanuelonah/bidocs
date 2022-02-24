@@ -6,9 +6,7 @@ import { VisuallyHidden } from '..';
 const DISPLAY_NAME = 'AccessibleIcon';
 
 type PrimitiveVisuallyHiddenProps = React.ComponentPropsWithoutRef<typeof VisuallyHidden>;
-
 type AccessibleIconElement = React.ElementRef<typeof VisuallyHidden>;
-
 interface AccessibleIconProps extends PrimitiveVisuallyHiddenProps {
   label: React.ReactNode;
   children: ReactElement;

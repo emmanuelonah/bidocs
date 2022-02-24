@@ -7,7 +7,6 @@ const DISPLAY_NAME = 'VisuallyHidden';
 
 type PrimitiveSpanProps = React.ComponentPropsWithoutRef<'span'>;
 type VisuallyHiddenElement = React.ElementRef<'span'>;
-
 interface VisuallyHiddenProps extends PrimitiveSpanProps {}
 
 const VisuallyHidden = React.forwardRef<VisuallyHiddenElement, VisuallyHiddenProps>(({ style, ...restProps }, forwardedRef) => (
