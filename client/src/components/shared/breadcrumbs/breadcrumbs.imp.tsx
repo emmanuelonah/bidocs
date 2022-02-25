@@ -26,7 +26,6 @@ function BreadcrumbsImp(props: BreadcrumbsImpProps) {
     setTo(location.pathname);
 
     return () => {
-      console.log('Testing');
       setFrom(to);
 
       location.state = {
@@ -42,8 +41,6 @@ function BreadcrumbsImp(props: BreadcrumbsImpProps) {
     }),
     [from, to]
   );
-
-  console.log('Location', location);
 
   return <BreadCrumbsContext value={values}>{React.cloneElement(child)}</BreadCrumbsContext>;
 }

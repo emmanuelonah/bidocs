@@ -35,7 +35,7 @@ interface ConfigAccessibilityProps extends PrimitiveAsideProps {
 
 const ConfigAccessibility = React.forwardRef<ConfigAccessibilityElement, ConfigAccessibilityProps>(
   ({ shownConfigUiOnRender, ...restProps }, forwardedRef) => {
-    const { value: shownConfigUi, dispatch } = useBoolean(shownConfigUiOnRender ?? false);
+    const { value: shownConfigUi, dispatch } = useBoolean(shownConfigUiOnRender);
 
     return (
       <>

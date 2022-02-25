@@ -14,8 +14,6 @@ type BreadcrumbsProps = {
 function Breadcrumbs(props: BreadcrumbsProps) {
   const { from, to } = useBreadCrumbsContext();
 
-  console.log({ from, to });
-
   return (
     <>
       <Portal>

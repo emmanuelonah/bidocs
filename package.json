@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "eslint-plugin-jest": "^26.1.1"
+  }
+}

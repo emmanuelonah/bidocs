@@ -4,6 +4,14 @@ import { theme } from 'utils';
 
 const GlobalCss = createGlobalStyle<{ theme: typeof theme }>`
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap');
+    :root{
+        --bidocs-font-size:16px;
+        --bidocs-line-spacing:1.2;
+        --bidocs-word-spacing:5;
+        --bidocs-background-color:#f3f3f3;
+        --bidocs-heading-color:#000;
+        --bidocs-paragraph-color:#000;
+    };
 
     *,
     *::before,
@@ -14,17 +22,49 @@ const GlobalCss = createGlobalStyle<{ theme: typeof theme }>`
     }; 
 
     html,body{
-        background-color: #F3F3F3;
         font-family: ${(props) => props.theme.font.fontFamily};
         font-weight: ${(props) => props.theme.font.fontWeights[3]};
         line-height: ${(props) => props.theme.space.lineHeights.copy};
         scroll-behavior: smooth;
         text-rendering: optimizeLegibility;
+        font-size: var(--bidocs-font-size);
     };
 
     body {
+        background-color: var(--bidocs-background-color);
         min-height: 100%;
         font-family: ${(props) => props.theme.font.fontFamily};
+    }
+
+    h1,h2,h3,h4,h5,h6,
+    label{
+        color:var(--bidocs-heading-color)
+    }
+
+    p{
+        color:var(--bidocs-paragraph-color)
+    }
+
+    h1 {
+        font-size: clamp(2rem, 2rem + 1vw, 3rem);
+    }
+    h2 {
+        font-size: clamp(1.5rem, 1.5rem + 1vw, 2rem);
+    }
+    h3 {
+        font-size: clamp(1.25rem, 1.25rem + 1vw, 1.5rem);
+    }
+    h4 {
+        font-size: clamp(1rem, 1rem + 1vw, 0.8rem);
+    }
+
+    img {
+        max-width: 100%;
+        display: block;
+    }
+    
+    ol, ul {
+        list-style: none;
     }
 
     select,
@@ -37,6 +77,10 @@ const GlobalCss = createGlobalStyle<{ theme: typeof theme }>`
 
     a{
         text-decoration: none;
+    }
+
+    #appRoot {
+        width: 100%;
     }
 
     .skip-content {

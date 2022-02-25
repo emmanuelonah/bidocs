@@ -1,30 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { __dev__ } from 'utils';
-import { useUniqueIds } from 'hooks';
+import { useForm } from 'hooks';
+import { composeEvent, __dev__ } from 'utils';
 import { Portal, Input } from 'components/shared';
 import { useAccessibility } from '../hooks/useAccessibility';
 import { AccessibleIcon } from 'components/shared/accessible-icon/accessible-icon.component';
 
+const FORM_ID = 'configUiForm';
 const DISPLAY_NAME = 'ConfigUi';
 const DEFAULT_LANG_ID = 'engLg';
+
+const ConfigUiForm = styled.form`
+  & input[type='submit'] {
+    background-color: #fff;
+    padding: 10px;
+
+    &:hover {
+      background-color: #eee;
+    }
+  }
+`;
 
 const Aside = styled.aside`
   position: absolute;
   z-index: 2000;
+  top: 0;
   right: 0;
-  bottom: 0;
   min-height: 100vh;
+  max-height: 100vh;
   width: 90%;
   max-width: 650px;
   background-color: #000;
   color: ${(props) => props.theme.colors.white.semi};
   padding: 10px 20px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;
 
 const Section = styled.section`
   margin-bottom: 2rem;
+
   & > * {
     display: block;
   }
@@ -46,6 +62,7 @@ const Section = styled.section`
 `;
 
 const SectionCss = css`
+  background-color: #fff;
   border: solid 1px ${(props) => props.theme.colors.white.semi};
   border-radius: 5px;
   padding: 10px;
@@ -109,91 +126,93 @@ interface ConfigAccessibilityProps extends PrimitiveAsideProps {
   onClose: React.MouseEventHandler;
 }
 
-const DEFAULT_CONFIGS = {
-  selectedLanguage: '',
-  bgColor: '#1e90ff',
-  headingColor: '#ffc0cb',
-  paragraphColor: '#fdbefd',
-  htmlFontSize: '16',
-  lineSpacing: '1.2',
-  wordSpacing: '5',
-};
-
 const ConfigUi = React.forwardRef<ConfigUiElement, ConfigAccessibilityProps>(({ shown, onClose, ...restProp }, forwardedRef) => {
-  const [bgInputId, paragraphInputId, headingInputId, fontSizeInputId, lineSpacingInputId, wordSpacingInputId] = useUniqueIds(6);
-  const [configs, setConfigs] = useState(DEFAULT_CONFIGS);
+  const configUiFormRef = React.useRef<HTMLFormElement>(null);
+  const formData = useForm();
   const {
-    data: { languages },
+    data: { languages, inputs, configs },
+    dispatch: { onConfigChange },
   } = useAccessibility();
-
-  const INPUTS = {
-    color: [
-      { id: bgInputId, type: 'color', name: 'bgColor', label: 'Change background' },
-      { id: headingInputId, type: 'color', name: 'headingColor', label: 'Change Heading' },
-      { id: paragraphInputId, type: 'color', name: 'paragraphColor', label: 'Change Paragraph' },
-    ],
-    font: [
-      { id: fontSizeInputId, type: 'number', name: 'htmlFontSize', label: 'Change Font Size' },
-      { id: lineSpacingInputId, type: 'number', name: 'lineSpacing', label: 'Change Line Spacing' },
-      { id: wordSpacingInputId, type: 'number', name: 'wordSpacing', label: 'Change Word Spacing' },
-    ],
-  };
-
-  function onConfigChange({ target }: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
-    setConfigs((prevState) => ({
-      ...prevState,
-      [target.name]: target.value,
-    }));
-  }
 
   if (!shown) return null;
 
   return (
     <Portal>
       <Aside {...restProp} ref={forwardedRef}>
-        <RowOne>
-          <AccessibleIcon label="Click to close configuration modal">
-            <CloseButton onClick={onClose}>&#10005;</CloseButton>
-          </AccessibleIcon>
-          <LanguageSelector
-            name="selectedLanguage"
-            defaultValue={languages.find((lang) => lang.id === DEFAULT_LANG_ID)?.value}
-            onChange={onConfigChange}
-          >
-            {languages.map((lang) => (
-              <option key={lang.id} value={lang.value}>
-                {lang.text}
-              </option>
+        <ConfigUiForm
+          id={FORM_ID}
+          ref={configUiFormRef}
+          onSubmit={(ev) => {
+            ev.preventDefault();
+            const values = [...formData(configUiFormRef as React.MutableRefObject<HTMLFormElement>).entries()];
+            console.log(values);
+          }}
+        >
+          <RowOne>
+            <AccessibleIcon label="Click to close configuration modal">
+              <CloseButton onClick={onClose}>&#10005;</CloseButton>
+            </AccessibleIcon>
+            <LanguageSelector
+              name="selectedLanguage"
+              defaultValue={languages.find((lang) => lang.id === DEFAULT_LANG_ID)?.value}
+              onChange={onConfigChange}
+            >
+              {languages.map((lang) => (
+                <option key={lang.id} value={lang.value}>
+                  {lang.text}
+                </option>
+              ))}
+            </LanguageSelector>
+          </RowOne>
+
+          <RowTwo>
+            <RowTitle>Color Adjustment</RowTitle>
+            {inputs.color.map((input) => (
+              <label key={input.id} htmlFor={input.id}>
+                {input.label}
+                <Input
+                  type={input.type}
+                  id={input.id}
+                  name={input.name}
+                  value={configs[input.name as InputName]}
+                  onChange={composeEvent(
+                    (ev) => {
+                      onConfigChange(ev as React.ChangeEvent<HTMLInputElement | HTMLSelectElement>);
+                    },
+                    (ev) => {
+                      input.onChange?.(ev as React.ChangeEvent<HTMLInputElement>);
+                    }
+                  )}
+                />
+              </label>
             ))}
-          </LanguageSelector>
-        </RowOne>
+          </RowTwo>
 
-        <RowTwo>
-          <RowTitle>Color Adjustment</RowTitle>
-          {INPUTS.color.map((input) => (
-            <label key={input.id} htmlFor={input.id}>
-              {input.label}
-              <Input type={input.type} id={input.id} name={input.name} value={configs[input.name as InputName]} onChange={onConfigChange} />
-            </label>
-          ))}
-        </RowTwo>
-
-        <RowThree>
-          <RowTitle>Font Adjustment</RowTitle>
-          {INPUTS.font.map((input) => (
-            <label key={input.id} htmlFor={input.id}>
-              {input.label}
-              <Input
-                type={input.type}
-                id={input.id}
-                name={input.name}
-                inputMode="numeric"
-                value={configs[input.name as InputName]}
-                onChange={onConfigChange}
-              />
-            </label>
-          ))}
-        </RowThree>
+          <RowThree>
+            <RowTitle>Font Adjustment</RowTitle>
+            {inputs.font.map((input) => (
+              <label key={input.id} htmlFor={input.id}>
+                {input.label}
+                <Input
+                  type={input.type}
+                  id={input.id}
+                  name={input.name}
+                  inputMode="numeric"
+                  value={configs[input.name as InputName]}
+                  onChange={composeEvent(
+                    (ev) => {
+                      onConfigChange(ev as React.ChangeEvent<HTMLInputElement | HTMLSelectElement>);
+                    },
+                    (ev) => {
+                      input.onChange?.(ev as React.ChangeEvent<HTMLInputElement>);
+                    }
+                  )}
+                />
+              </label>
+            ))}
+          </RowThree>
+          <input type="submit" value="CONSOLE RESULT" />
+        </ConfigUiForm>
       </Aside>
     </Portal>
   );
