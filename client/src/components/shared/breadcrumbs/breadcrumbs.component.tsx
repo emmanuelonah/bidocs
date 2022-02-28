@@ -5,11 +5,27 @@ import { NavLink } from 'react-router-dom';
 import { Portal } from 'components/shared';
 import { useBreadCrumbsContext } from './breadcrumbs.imp';
 
-const Wrapper = styled.nav``;
+const Wrapper = styled.nav`
+  & ol {
+    display: flex;
+
+    & > li {
+      padding: 0 0.3rem;
+    }
+  }
+`;
 
 type BreadcrumbsProps = {
   children: React.ReactElement | React.ReactElement[];
 };
+
+/** ***********************************************
+ * Pattern: Portal appending pattern
+ * desc: still under construction, the idea
+ * is to use in-singleton memory for the storage
+ * and <Portal/> for dynamic navigation appending,
+ * still experimenting this pattern
+ */
 
 function Breadcrumbs(props: BreadcrumbsProps) {
   const { from, to } = useBreadCrumbsContext();

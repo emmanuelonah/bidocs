@@ -2,10 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Portal } from '..';
+import { __dev__ } from 'utils';
 import { useBoolean } from 'hooks';
 import { IcnHuman } from './assets/icn-human.svg';
 import { ConfigUi } from './components/config-ui.component';
 import { AccessibleIcon } from '../accessible-icon/accessible-icon.component';
+
+const DISPLAY_NAME = 'ConfigAccessibility';
 
 const IconWrapper = styled.div`
   background-color: #000;
@@ -65,4 +68,7 @@ const ConfigAccessibility = React.forwardRef<ConfigAccessibilityElement, ConfigA
   }
 );
 
+if (__dev__) {
+  ConfigAccessibility.displayName = DISPLAY_NAME;
+}
 export { ConfigAccessibility };
