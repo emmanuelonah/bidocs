@@ -10,15 +10,22 @@ app.use(express.json());
 
 app.use(morgan('combined'));
 
-app.use('/api/v1', apiRouter);
-
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'templates')));
 
 app.use(express.static(path.join(__dirname.replace('src', 'public'))));
 
-app.all('*', (req, res) => {
+app.use('/api/v1', apiRouter);
+
+app.get('/user', (req, res) => {
+  res.status(200).json({
+    success: true,
+    data: {},
+  });
+});
+
+app.all('/api/v1/*', (req, res) => {
   res.status(404).send('ENDPOINT NOT FOUND');
 });
 
