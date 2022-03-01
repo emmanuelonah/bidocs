@@ -16,13 +16,6 @@ app.use(express.static(path.join(__dirname, 'templates')));
 
 app.use('/api/v1', apiRouter);
 
-app.get('/user', (req, res) => {
-  res.status(200).json({
-    success: true,
-    data: {},
-  });
-});
-
 app.all('/api/v1/*', (req, res) => {
   res.status(404).send('ENDPOINT NOT FOUND');
 });
