@@ -14,8 +14,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'templates')));
 
-app.use(express.static(path.join(__dirname.replace('src', 'public'))));
-
 app.use('/api/v1', apiRouter);
 
 app.get('/user', (req, res) => {
