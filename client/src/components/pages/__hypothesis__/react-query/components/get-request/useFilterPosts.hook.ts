@@ -5,7 +5,6 @@ import { httpGetRequest } from 'services';
 const GET_FILTERED_POSTS_QUERY_KEY = '@bidocs/filteredPosts';
 
 function useGetFilteredPosts(userId: string | number) {
-  console.log(userId);
   const filteredPosts = useQuery(GET_FILTERED_POSTS_QUERY_KEY, () =>
     httpGetRequest(`posts?userId=${userId}`).then(
       (res) => res.json(),
@@ -31,8 +30,6 @@ function useFilterPosts(userId: string | number = DEFAULT_USER_ID) {
   useEffect(() => {
     triggerRefresh();
   }, [triggerRefresh]);
-
-  console.log(userId);
 
   return filteredPosts;
 }

@@ -9,7 +9,7 @@ type TDElement = React.ElementRef<'td'>;
 interface TDProps extends PrimitiveTDProps {}
 
 const TD = React.forwardRef<TDElement, TDProps>((props, forwardedRef) => (
-  <TD {...props} ref={forwardedRef} />
+  <td {...props} ref={forwardedRef} />
 ));
 
 if (__dev__) {

@@ -11,7 +11,8 @@ interface TRProps extends PrimitiveTRProps {
     | React.ReactElement<'th'>
     | React.ReactElement<'th'>[]
     | React.ReactElement<'td'>
-    | React.ReactElement<'td'>[];
+    | React.ReactElement<'td'>[]
+    | React.ReactNode;
 }
 
 const TR = React.forwardRef<TRElement, TRProps>(({ children, ...restProps }, forwardedRef) => (

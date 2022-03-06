@@ -7,6 +7,7 @@ const DISPLAY_NAME = 'TableContext';
 const DEFAULT_PAGE = 1;
 
 type TableContextType = {
+  dataIsLoading: boolean;
   pages: number;
   rowCount: number;
   currentPage: number;
@@ -25,6 +26,7 @@ interface TableProps extends PrimitiveTableProps {
   rowCount: number;
   rowPerPage: number;
   startPage?: number;
+  dataIsLoading: boolean;
   shouldUpdateRoute?: boolean;
   updateCurrentData?: (currentPage: number, currentData: any[]) => void;
   children: React.ReactElement[];
@@ -40,6 +42,7 @@ const Table = React.forwardRef<TableElement, TableProps>((props, forwardedRef) =
     rowCount,
     rowPerPage,
     startPage,
+    dataIsLoading,
     updateCurrentData,
     shouldUpdateRoute,
     children,
@@ -53,11 +56,12 @@ const Table = React.forwardRef<TableElement, TableProps>((props, forwardedRef) =
       rowCount,
       currentPage,
       initialPage: DEFAULT_PAGE,
+      dataIsLoading,
       setCurrentPage,
       shouldUpdateRoute,
       updateCurrentData,
     }),
-    [currentPage, data, pages, rowCount, shouldUpdateRoute, updateCurrentData]
+    [currentPage, data, dataIsLoading, pages, rowCount, shouldUpdateRoute, updateCurrentData]
   );
 
   return (

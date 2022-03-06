@@ -5,6 +5,7 @@ import { useArraySize } from 'hooks';
 import { useTableContext } from '../table.component';
 import { TPaginationNext } from './table.pagination.next';
 import { TPaginationPrevious } from './table.pagination.previous';
+import { useTableRouting } from '../hooks/useTableRouting.hook';
 
 const DISPLAY_NAME = 'TPagination';
 
@@ -22,6 +23,11 @@ const TPagination = React.forwardRef<TPaginationElement, TPaginationProps>(
     const { pages, currentPage, rowCount, data, setCurrentPage, updateCurrentData } =
       useTableContext();
     const getIndexBaseSize = useArraySize();
+    const reRoute = useTableRouting();
+
+    React.useEffect(() => {
+      reRoute(currentPage);
+    }, [currentPage, reRoute]);
 
     const renderPagesNavigation = React.useCallback(() => {
       const node = (

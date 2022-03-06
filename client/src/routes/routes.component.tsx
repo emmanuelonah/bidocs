@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes as Switch } from 'react-router-dom';
 import BreadcrumbsImp from 'components/shared/breadcrumbs';
 
 import { ConfigAccessibility } from 'components/shared';
-import { ReactQuery } from 'components/pages';
+import { ReactQuery, OptimisticUpdate } from 'components/pages';
 
 const PATHS = {
   home: '/',
@@ -19,6 +19,10 @@ function Test() {
   );
 }
 
+function Fallback() {
+  return <p>PAGE NOT FOUND</p>;
+}
+
 function Routes() {
   return (
     <BrowserRouter>
@@ -28,7 +32,8 @@ function Routes() {
           <Switch>
             <Route path={PATHS.home} element={<Test />} />
             <Route path={PATHS.reactQueryHypothesis} element={<ReactQuery />} />
-            <Route path="*" element={<Test />} />
+            <Route path={PATHS.reactQueryOptimisticUpdate} element={<OptimisticUpdate />} />
+            <Route path="*" element={<Fallback />} />
           </Switch>
         </BreadcrumbsImp.Breadcrumbs>
       </BreadcrumbsImp.Root>
@@ -36,4 +41,4 @@ function Routes() {
   );
 }
 
-export { Routes };
+export { Routes, PATHS };

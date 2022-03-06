@@ -4,9 +4,8 @@ import { TD } from './components/table.d';
 import { TH } from './components/table.h';
 import { TR } from './components/table.row';
 import { THead } from './components/table.head';
+import { TBody } from './components/table.body';
 import { TPagination } from './components/table.pagination';
-import { TPaginationNext } from './components/table.pagination.next';
-import { TPaginationPrevious } from './components/table.pagination.previous';
 
 export default {
   Root: Table,
@@ -14,7 +13,6 @@ export default {
   TD,
   TR,
   THead,
+  TBody,
   TPagination,
-  TPaginationNext,
-  TPaginationPrevious,
 };

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 import { Fragment } from 'react';
-import { ReactQueryDevtools } from 'react-query/devtools';
-import { QueryClientProvider, QueryClient } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 
+import { PATHS } from 'routes';
 import { GetRequest } from './components/get-request/get-request.component';
 import { PutRequest } from './components/put-request/put-request.component';
 import { PostRequest } from './components/post-request/post-request.component';
@@ -13,11 +13,10 @@ const Heading = styled.h2``;
 
 const Title = styled.h3``;
 
-const queryClient = new QueryClient();
-
 function ReactQuery() {
+  const navigate = useNavigate();
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       <Heading>REACT QUERY HYPOTHESIS</Heading>
 
       <Fragment>
@@ -35,9 +34,17 @@ function ReactQuery() {
       <Fragment>
         <Title>DELETE REQUEST</Title>
         <DeleteRequest />
+        <br />
       </Fragment>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+      <button
+        type="button"
+        onClick={() => {
+          navigate(PATHS.reactQueryOptimisticUpdate);
+        }}
+      >
+        Go to OptimisticUpdate
+      </button>
+    </>
   );
 }
 

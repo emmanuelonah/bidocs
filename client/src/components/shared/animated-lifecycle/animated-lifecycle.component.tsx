@@ -24,15 +24,11 @@ const Container = styled.span`
 `;
 
 const AnimateLifeCycle = React.forwardRef<AnimatedLifeCycleElement, AnimatedLifeCycleProps>(
-  ({ containerRef, children, ...restProps }, forwardedRef) => {
-    console.log(containerRef.current);
-
-    return (
-      <Container {...restProps} ref={forwardedRef}>
-        {children}
-      </Container>
-    );
-  }
+  ({ containerRef, children, ...restProps }, forwardedRef) => (
+    <Container {...restProps} ref={forwardedRef}>
+      {children}
+    </Container>
+  )
 );
 
 if (__dev__) {
