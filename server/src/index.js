@@ -15,7 +15,7 @@ const httpServer = createServer(app);
 function startServer() {
   httpServer.listen(PORT, HOST, () => {
     if (__dev__) {
-      console.log(`Server started at http://${HOST}:${PORT}/api/v1`.underline.green.bold);
+      console.info(`Server started at http://${HOST}:${PORT}/api/v1`.underline.green.bold);
     }
   });
 }
