@@ -43,6 +43,10 @@ const Container = styled.div`
 
     & > tbody {
       & tr {
+        &:hover {
+          background-color: #eee;
+        }
+
         & td {
           border: solid 1px #eee;
           padding: 0 0.8rem;
@@ -117,7 +121,7 @@ function OptimisticUpdate() {
     <Container>
       <Heading>React Optimistic Update</Heading>
       {data?.length && (
-        <Table.Root {...comments}>
+        <Table.Root {...comments} id="commentsTable">
           <Table.THead>
             <Table.TR>
               {headings?.map((heading, index) => (

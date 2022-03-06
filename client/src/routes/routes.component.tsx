@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes as Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes as Switch, useNavigate } from 'react-router-dom';
 
 import BreadcrumbsImp from 'components/shared/breadcrumbs';
 
@@ -12,9 +12,19 @@ const PATHS = {
 } as const;
 
 function Test() {
+  const navigate = useNavigate();
+
   return (
     <>
       <p>Welcome home</p>
+      <button
+        type="button"
+        onClick={() => {
+          navigate(PATHS.reactQueryHypothesis);
+        }}
+      >
+        Go to Hypothesis lab
+      </button>
     </>
   );
 }

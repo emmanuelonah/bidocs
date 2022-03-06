@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 
-import { createContext } from 'utils';
+import { createContext, throwError } from 'utils';
 
 const DISPLAY_NAME = 'TableContext';
 const DEFAULT_PAGE = 1;
 
 type TableContextType = {
+  tableId: string;
   dataIsLoading: boolean;
   pages: number;
   rowCount: number;
@@ -21,6 +22,7 @@ type TableContextType = {
 type PrimitiveTableProps = React.ComponentPropsWithoutRef<'table'>;
 type TableElement = React.ElementRef<'table'>;
 interface TableProps extends PrimitiveTableProps {
+  id: string;
   data: any[];
   pages: number;
   rowCount: number;
@@ -35,8 +37,26 @@ interface TableProps extends PrimitiveTableProps {
 const [TableProvider, useTableContext] = createContext<TableContextType>(DISPLAY_NAME);
 export { useTableContext };
 
+function slugify(text: string) {
+  if (typeof text !== 'string') {
+    throwError('SlugifyError', 'You need a string text to use slugify', slugify);
+  }
+
+  const margin = 'table';
+  let _text = text;
+
+  if (!_text.includes(margin)) {
+    _text += margin;
+  }
+
+  const newText = _text.replace(' ', '-').split(margin).join('');
+
+  return newText;
+}
+
 const Table = React.forwardRef<TableElement, TableProps>((props, forwardedRef) => {
   const {
+    id,
     data,
     pages,
     rowCount,
@@ -49,8 +69,10 @@ const Table = React.forwardRef<TableElement, TableProps>((props, forwardedRef) =
     ...restProps
   } = props;
   const [currentPage, setCurrentPage] = React.useState(() => startPage ?? DEFAULT_PAGE);
+  const tableId = slugify(id);
   const tableContextValue = React.useMemo(
     () => ({
+      tableId,
       data,
       pages,
       rowCount,
@@ -61,12 +83,21 @@ const Table = React.forwardRef<TableElement, TableProps>((props, forwardedRef) =
       shouldUpdateRoute,
       updateCurrentData,
     }),
-    [currentPage, data, dataIsLoading, pages, rowCount, shouldUpdateRoute, updateCurrentData]
+    [
+      currentPage,
+      data,
+      dataIsLoading,
+      pages,
+      rowCount,
+      shouldUpdateRoute,
+      tableId,
+      updateCurrentData,
+    ]
   );
 
   return (
     <TableProvider value={tableContextValue}>
-      <table {...restProps} ref={forwardedRef}>
+      <table {...restProps} ref={forwardedRef} id={tableId}>
         {children}
       </table>
     </TableProvider>
