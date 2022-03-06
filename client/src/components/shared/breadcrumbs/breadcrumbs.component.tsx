@@ -1,8 +1,10 @@
+/* eslint-disable no-undef */
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 import { Portal } from 'components/shared';
+import { useImperativeElementNodeQuery } from 'hooks';
 import { useBreadCrumbsContext } from './breadcrumbs.imp';
 
 const Wrapper = styled.nav`
@@ -19,20 +21,16 @@ type BreadcrumbsProps = {
   children: React.ReactElement | React.ReactElement[];
 };
 
-/** ***********************************************
- * Pattern: Portal appending pattern
- * desc: still under construction, the idea
- * is to use in-singleton memory for the storage
- * and <Portal/> for dynamic navigation appending,
- * still experimenting this pattern
- */
-
 function Breadcrumbs(props: BreadcrumbsProps) {
   const { from, to } = useBreadCrumbsContext();
+  const headerEl = useImperativeElementNodeQuery('header') as NodeListOf<Element>;
+  const appRootElement = useImperativeElementNodeQuery(() =>
+    headerEl.length ? 'header' : '#appRoot'
+  );
 
   return (
     <>
-      <Portal>
+      <Portal insertBeforeElement={appRootElement as HTMLElement}>
         <Wrapper aria-label="Breadcrumb">
           <ol>
             <li>

@@ -13,7 +13,16 @@ interface TabPanelProps extends PrimitiveDivProps {}
 const TabPanel = React.forwardRef<TabPanelElement, TabPanelProps>((props, forwardedRef) => {
   const { panelId, controlId } = useTabContext();
 
-  return <div {...props} ref={forwardedRef} role="tabpanel" tabIndex={0} id={panelId} aria-labelledby={controlId} />;
+  return (
+    <div
+      {...props}
+      ref={forwardedRef}
+      role="tabpanel"
+      tabIndex={0}
+      id={panelId}
+      aria-labelledby={controlId}
+    />
+  );
 });
 
 if (__dev__) {

@@ -8,7 +8,9 @@ type PrimitiveTextarea = React.ComponentPropsWithoutRef<'textarea'>;
 type TextareaElement = React.ElementRef<'textarea'>;
 interface TextareaProps extends PrimitiveTextarea {}
 
-const Textarea = React.forwardRef<TextareaElement, TextareaProps>((props, forwardedRef) => <textarea {...props} ref={forwardedRef} />);
+const Textarea = React.forwardRef<TextareaElement, TextareaProps>((props, forwardedRef) => (
+  <textarea {...props} ref={forwardedRef} />
+));
 
 if (__dev__) {
   Textarea.displayName = DISPLAY_NAME;

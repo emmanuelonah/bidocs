@@ -8,7 +8,8 @@ type BreadCrumbsContextType = {
   to: string;
 };
 
-const [BreadCrumbsContext, useBreadCrumbsContext] = createContext<BreadCrumbsContextType>('BreadCrumbsContext');
+const [BreadCrumbsContext, useBreadCrumbsContext] =
+  createContext<BreadCrumbsContextType>('BreadCrumbsContext');
 
 export { useBreadCrumbsContext };
 

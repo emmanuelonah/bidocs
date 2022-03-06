@@ -38,7 +38,14 @@ interface AlertProps extends PrimitiveDivProps {
 }
 
 const Alert = React.forwardRef<AlertElement, AlertProps>(({ type, ...restProps }, forwardedRef) => (
-  <Container {...restProps} ref={forwardedRef} role="alert" aria-atomic="true" aria-live="polite" data-variant={type} />
+  <Container
+    {...restProps}
+    ref={forwardedRef}
+    role="alert"
+    aria-atomic="true"
+    aria-live="polite"
+    data-variant={type}
+  />
 ));
 
 if (__dev__) {

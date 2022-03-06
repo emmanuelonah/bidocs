@@ -12,19 +12,21 @@ interface AccessibleIconProps extends PrimitiveVisuallyHiddenProps {
   children: ReactElement;
 }
 
-const AccessibleIcon = React.forwardRef<AccessibleIconElement, AccessibleIconProps>((props, forwardedRef) => {
-  const { label, children, ...restProps } = props;
-  const child = React.Children.only(children);
+const AccessibleIcon = React.forwardRef<AccessibleIconElement, AccessibleIconProps>(
+  (props, forwardedRef) => {
+    const { label, children, ...restProps } = props;
+    const child = React.Children.only(children);
 
-  return (
-    <>
-      {React.cloneElement(child, { 'aria-hidden': 'true', focusable: 'false' })}
-      <VisuallyHidden {...restProps} ref={forwardedRef}>
-        {label}
-      </VisuallyHidden>
-    </>
-  );
-});
+    return (
+      <>
+        {React.cloneElement(child, { 'aria-hidden': 'true', focusable: 'false' })}
+        <VisuallyHidden {...restProps} ref={forwardedRef}>
+          {label}
+        </VisuallyHidden>
+      </>
+    );
+  }
+);
 
 if (__dev__) {
   AccessibleIcon.displayName = DISPLAY_NAME;

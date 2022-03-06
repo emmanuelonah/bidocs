@@ -1,7 +1,11 @@
 import React from 'react';
 import { throwError } from './error';
 
-type CreateContextReturnType<ContextType> = [React.Provider<ContextType>, () => ContextType, React.Consumer<ContextType>];
+type CreateContextReturnType<ContextType> = [
+  React.Provider<ContextType>,
+  () => ContextType,
+  React.Consumer<ContextType>
+];
 
 function createContext<ContextType>(displayName: string): CreateContextReturnType<ContextType> {
   const Context = React.createContext<ContextType>(null!);
@@ -11,7 +15,11 @@ function createContext<ContextType>(displayName: string): CreateContextReturnTyp
     const context = React.useContext(Context);
 
     if (!context) {
-      throwError(`${displayName}Error`, "context can't be used outside its <Provider/> scope", useContext);
+      throwError(
+        `${displayName}Error`,
+        "context can't be used outside its <Provider/> scope",
+        useContext
+      );
     }
     return context;
   }

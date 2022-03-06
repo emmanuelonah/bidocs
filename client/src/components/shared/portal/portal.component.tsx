@@ -4,13 +4,14 @@ import { createPortal } from 'react-dom';
 import { useUniqueIds, useForceUpdate } from 'hooks';
 
 type PortalProps = {
-  containerRef?: React.MutableRefObject<HTMLElement>;
   elementType?: string;
+  containerRef?: React.MutableRefObject<HTMLElement>;
+  insertBeforeElement?: HTMLElement;
   children: React.ReactNode;
 };
 
 function Portal(props: PortalProps) {
-  const { elementType, containerRef, children } = props;
+  const { elementType, containerRef, insertBeforeElement, children } = props;
   const mountElementNodeRef = useRef<HTMLSpanElement>(null!);
   const portalElementNodeRef = useRef<HTMLElement>(null!);
   const [portalId] = useUniqueIds(1);
@@ -21,9 +22,16 @@ function Portal(props: PortalProps) {
 
     const { ownerDocument } = mountElementNodeRef.current;
     const body = containerRef?.current ?? ownerDocument.body;
+
     portalElementNodeRef.current = ownerDocument.createElement(elementType!);
     portalElementNodeRef.current.id = portalId;
-    body.appendChild(portalElementNodeRef.current);
+
+    if (insertBeforeElement?.tagName) {
+      body.insertBefore(portalElementNodeRef.current, insertBeforeElement);
+    } else {
+      body.appendChild(portalElementNodeRef.current);
+    }
+
     forceUpdate();
 
     return function cleanDOM() {
@@ -31,9 +39,13 @@ function Portal(props: PortalProps) {
         body.removeChild(portalElementNodeRef.current);
       }
     };
-  }, [containerRef, elementType, forceUpdate, portalId]);
+  }, [containerRef, elementType, forceUpdate, insertBeforeElement, portalId]);
 
-  return portalElementNodeRef.current ? createPortal(children, portalElementNodeRef.current) : <span ref={mountElementNodeRef} />;
+  return portalElementNodeRef.current ? (
+    createPortal(children, portalElementNodeRef.current)
+  ) : (
+    <span ref={mountElementNodeRef} />
+  );
 }
 
 Portal.defaultProps = {

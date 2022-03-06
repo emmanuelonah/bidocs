@@ -2,7 +2,22 @@ import React from 'react';
 
 import { useUniqueIds } from 'hooks';
 
-type CssUnits = 'cm' | 'mm' | 'in' | 'px' | 'pt' | 'pc' | 'em' | 'rem' | 'ex' | '%' | 'vh' | 'vw' | 'vmin' | 'vmax' | 'ch';
+type CssUnits =
+  | 'cm'
+  | 'mm'
+  | 'in'
+  | 'px'
+  | 'pt'
+  | 'pc'
+  | 'em'
+  | 'rem'
+  | 'ex'
+  | '%'
+  | 'vh'
+  | 'vw'
+  | 'vmin'
+  | 'vmax'
+  | 'ch';
 
 function setCssRootProperty(key: string, value: string) {
   document.documentElement.style.setProperty(key, value);
@@ -65,7 +80,14 @@ const LANGUAGES = [
 
 function useAccessibility() {
   const [configs, setConfigs] = React.useState(DEFAULT_CONFIGS);
-  const [bgInputId, paragraphInputId, headingInputId, fontSizeInputId, lineSpacingInputId, wordSpacingInputId] = useUniqueIds(6);
+  const [
+    bgInputId,
+    paragraphInputId,
+    headingInputId,
+    fontSizeInputId,
+    lineSpacingInputId,
+    wordSpacingInputId,
+  ] = useUniqueIds(6);
   const INPUTS = {
     color: [
       {

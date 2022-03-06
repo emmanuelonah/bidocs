@@ -1,5 +1,5 @@
 export * from './tab/index';
-export * from './Alert/Alert.component';
+export * from './alert/alert.component';
 export * from './input/input.component';
 export * from './portal/portal.component';
 export * from './textarea/textarea.component';
