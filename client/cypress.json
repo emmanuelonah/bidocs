@@ -1,0 +1,7 @@
+{
+  "env": {
+    "baseUrl": "http://localhost:3000",
+    "home": "/",
+    "optimisticUpdate": "/hypothesis/react-query/optimistic-update"
+  }
+}

@@ -3,7 +3,8 @@
     "browser": true,
     "commonjs": true,
     "es2021": true,
-    "jest/globals": true
+    "jest/globals": true,
+    "cypress/globals": true
   },
   "extends": ["plugin:react/recommended", "plugin:react-hooks/recommended", "airbnb"],
   "parser": "@typescript-eslint/parser",
@@ -16,7 +17,7 @@
   "globals": {
     "BodyInit": false
   },
-  "plugins": ["react", "jest", "@typescript-eslint"],
+  "plugins": ["react", "jest", "@typescript-eslint", "cypress"],
   "rules": {
     "eqeqeq": "off",
     "no-var": "off",
@@ -48,6 +49,7 @@
     "object-curly-newline": "off",
     "function-paren-newline": "off",
     "prefer-arrow-callback": "off",
+    "no-unused-expressions": "off",
     "implicit-arrow-linebreak": "off",
     "react/jsx-wrap-multilines": "off",
     "react/react-in-jsx-scope": "off",
@@ -72,6 +74,12 @@
     "jsx-a11y/no-noninteractive-element-interactions": "off",
     "max-len": ["error", { "code": 100, "tabWidth": 2 }],
     "import/extensions": ["off", "always", { "ignorePackages": true }],
-    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }]
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "cypress/no-assigning-return-values": "error",
+    "cypress/no-unnecessary-waiting": "error",
+    "cypress/assertion-before-screenshot": "warn",
+    "cypress/no-force": "warn",
+    "cypress/no-async-tests": "error",
+    "cypress/no-pause": "error"
   }
 }

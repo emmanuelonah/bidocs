@@ -11,7 +11,7 @@ const PATHS = {
   reactQueryOptimisticUpdate: '/hypothesis/react-query/optimistic-update',
 } as const;
 
-function Test() {
+function Home() {
   const navigate = useNavigate();
 
   return (
@@ -40,7 +40,7 @@ function Routes() {
       <BreadcrumbsImp.Root>
         <BreadcrumbsImp.Breadcrumbs>
           <Switch>
-            <Route path={PATHS.home} element={<Test />} />
+            <Route path={PATHS.home} element={<Home />} />
             <Route path={PATHS.reactQueryHypothesis} element={<ReactQuery />} />
             <Route path={PATHS.reactQueryOptimisticUpdate} element={<OptimisticUpdate />} />
             <Route path="*" element={<Fallback />} />
