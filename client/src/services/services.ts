@@ -8,10 +8,6 @@ const headers: CustomHeaders = new Headers({
 
 let baseUrl = '';
 /**
- * @param  {} functioninitializeBaseUrl(
- * @param  {} {if(baseUrl
- * @param  {}} return;baseUrl=process.env.REACT_APP_API_BASE_URL??'http
- *
  * this function initializes baseUrl at time of initial branching i.e first access into this file
  */
 (function initializeBaseUrl() {
@@ -35,10 +31,6 @@ function composeHeaders() {
   };
 }
 
-/**
- * @param  {string} endpointSuffix
- * @returns {Promise<ServerResponse>} => server response
- */
 async function httpGetRequest(endpointSuffix: string) {
   const composedHeaders = composeHeaders();
 
@@ -51,11 +43,6 @@ async function httpGetRequest(endpointSuffix: string) {
   return response;
 }
 
-/**
- * @param  {string} endpointSuffix => post-endpoint
- * @param  {PutType} data
- * @returns {Promise<ServerResponse>} => server response
- */
 async function httpPostRequest<PostType>(endpointSuffix: string, data: PostType) {
   const composedHeaders = composeHeaders();
 
@@ -68,11 +55,6 @@ async function httpPostRequest<PostType>(endpointSuffix: string, data: PostType)
   return response;
 }
 
-/**
- * @param  {string} endpointSuffix => put-endpoint
- * @param  {PutType} data
- * @returns {Promise<ServerResponse>} => server response
- */
 async function httpPutRequest<PutType>(endpointSuffix: string, data: PutType) {
   const composedHeaders = composeHeaders();
 
@@ -85,11 +67,6 @@ async function httpPutRequest<PutType>(endpointSuffix: string, data: PutType) {
   return response;
 }
 
-/**
- * @param  {string} endpointSuffix => patch-endpoint
- * @param  {PatchType} data
- * @returns {Promise<ServerResponse>} => server response
- */
 async function httpPatchRequest<PatchType>(endpointSuffix: string, data: PatchType) {
   const composedHeaders = composeHeaders();
 
@@ -102,10 +79,6 @@ async function httpPatchRequest<PatchType>(endpointSuffix: string, data: PatchTy
   return response;
 }
 
-/**
- * @param {string} endpointSuffix => delete-endpoint/fieldOrRowId
- * @returns {Promise<ServerResponse>}
- */
 async function httpDeleteRequest(endpointSuffix: string) {
   const composedHeaders = composeHeaders();
 
@@ -117,4 +90,19 @@ async function httpDeleteRequest(endpointSuffix: string) {
   return response;
 }
 
-export { httpGetRequest, httpPostRequest, httpPutRequest, httpPatchRequest, httpDeleteRequest };
+async function httpLogOut() {
+  const response = await {
+    success: true,
+  };
+
+  return response;
+}
+
+export {
+  httpGetRequest,
+  httpPostRequest,
+  httpPutRequest,
+  httpPatchRequest,
+  httpDeleteRequest,
+  httpLogOut,
+};
