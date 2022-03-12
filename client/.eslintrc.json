@@ -53,6 +53,7 @@
     "implicit-arrow-linebreak": "off",
     "react/jsx-wrap-multilines": "off",
     "react/react-in-jsx-scope": "off",
+    "space-before-function-paren": "off",
     "jsx-a11y/media-has-caption": "off",
     "jest/no-conditional-expect": "off",
     "react/require-default-props": "off",

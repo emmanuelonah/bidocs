@@ -5,11 +5,9 @@ import { httpGetRequest } from 'services';
 const GET_FILTERED_POSTS_QUERY_KEY = '@bidocs/filteredPosts';
 
 function useGetFilteredPosts(userId: string | number) {
-  const filteredPosts = useQuery(GET_FILTERED_POSTS_QUERY_KEY, () =>
-    httpGetRequest(`posts?userId=${userId}`).then(
-      (res) => res.json(),
-      (error) => error
-    )
+  const filteredPosts = useQuery(
+    GET_FILTERED_POSTS_QUERY_KEY,
+    async () => await httpGetRequest(`posts?userId=${userId}`)
   );
 
   return filteredPosts;
