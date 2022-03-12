@@ -10,7 +10,9 @@ function usePasswordExpiry<T extends () => any>(todoOnExpiry?: T) {
   useEffect(() => {
     if (isPasswordExpired) {
       todoOnExpiry?.();
-      httpLogOut();
+      httpLogOut().then((res) => {
+        console.log(res);
+      });
     }
   }, [isPasswordExpired, todoOnExpiry]);
 }
