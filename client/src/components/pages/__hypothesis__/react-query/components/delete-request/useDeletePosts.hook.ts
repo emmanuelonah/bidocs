@@ -4,8 +4,8 @@ import { httpDeleteRequest } from 'services';
 
 function useDeletePosts() {
   const deletePosts = useMutation((id: number | string) =>
-    httpDeleteRequest(`posts/${id}`).then(
-      (res) => res.json(),
+    httpDeleteRequest({ endpointSuffix: `posts/${id}` }).then(
+      (res) => res,
       (error) => error
     )
   );

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from 'react-query';
 
-import { httpPostRequest } from 'services';
+import { httpSendRequest } from 'services';
 import { GET_TODOS_QUERY_KEY } from '../get-request/useGetTodos.hook';
 
 export interface Posts {
@@ -13,8 +13,12 @@ function usePostPosts() {
   const queryClient = useQueryClient();
   const postTodo = useMutation(
     (data: Posts) =>
-      httpPostRequest<Posts>('posts', JSON.stringify(data) as unknown as Posts).then(
-        (res) => res.json(),
+      httpSendRequest<Posts>({
+        endpointSuffix: 'posts',
+        method: 'POST',
+        data: JSON.stringify(data) as unknown as Posts,
+      }).then(
+        (res) => res,
         (error) => error
       ),
     {

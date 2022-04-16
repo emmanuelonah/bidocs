@@ -13,8 +13,8 @@ interface Todo {
 
 function useGetTodos() {
   const { isLoading, data, error } = useQuery<Todo[], Error>(GET_TODOS_QUERY_KEY, () =>
-    httpGetRequest('todos').then(
-      async (res) => await res.json(),
+    httpGetRequest({ endpointSuffix: 'todos' }).then(
+      async (res) => await res,
       (error) => error
     )
   );

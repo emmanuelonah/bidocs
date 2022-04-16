@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query';
+
 import { httpGetRequest } from 'services';
 
 const GET_COMMENTS_QUERY_KEY = '@bidocs/comments';
@@ -15,8 +16,8 @@ function useGetComments() {
   const comments = useQuery<Comment[], Error>(
     GET_COMMENTS_QUERY_KEY,
     () =>
-      httpGetRequest('comments').then(
-        (res) => res.json(),
+      httpGetRequest({ endpointSuffix: 'comments' }).then(
+        (res) => res,
         (error) => error
       ),
     {

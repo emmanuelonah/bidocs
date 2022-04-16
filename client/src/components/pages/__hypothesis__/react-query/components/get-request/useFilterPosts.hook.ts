@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
+
 import { httpGetRequest } from 'services';
 
 const GET_FILTERED_POSTS_QUERY_KEY = '@bidocs/filteredPosts';
@@ -7,7 +8,7 @@ const GET_FILTERED_POSTS_QUERY_KEY = '@bidocs/filteredPosts';
 function useGetFilteredPosts(userId: string | number) {
   const filteredPosts = useQuery(
     GET_FILTERED_POSTS_QUERY_KEY,
-    async () => await httpGetRequest(`posts?userId=${userId}`)
+    async () => await httpGetRequest({ endpointSuffix: `posts?userId=${userId}` })
   );
 
   return filteredPosts;
