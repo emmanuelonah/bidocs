@@ -1,30 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-function useDebounce(milliseconds: number, automaticPullSystem?: Function) {
-  let timeout: ReturnType<typeof setTimeout> | null = null;
+function useDebounce<ValueType>(value: ValueType, delay: number) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {
-    let _timeout: ReturnType<typeof setTimeout>;
-
-    if (automaticPullSystem) {
-      _timeout = setTimeout(() => {
-        automaticPullSystem();
-      }, milliseconds);
-    }
-
-    return function clearTimeouts() {
-      clearTimeout(_timeout);
-      clearTimeout(timeout!);
-    };
-  }, [automaticPullSystem, milliseconds, timeout]);
-
-  function debounce(cb: Function) {
+    let timeout: ReturnType<typeof setTimeout>;
     timeout = setTimeout(() => {
-      cb();
-    }, milliseconds);
-  }
+      setDebouncedValue(value);
+    }, delay);
 
-  return debounce;
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
 }
 
 export { useDebounce };
