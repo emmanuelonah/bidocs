@@ -30,6 +30,7 @@
     "no-plusplus": "off",
     "import/order": "off",
     "comma-dangle": "off",
+    "dot-notation": "off",
     "no-return-await": "off",
     "linebreak-style": "off",
     "react/prop-types": "off",

@@ -1,59 +1,27 @@
 import React from 'react';
 
-import { __dev__ } from 'utils';
 import { Loader, Alerter } from 'components/shared';
 
-const DISPLAY_NAME = 'ResourceRenderer';
-
-type PrimitiveDivProps = React.ComponentPropsWithoutRef<'div'>;
-type ResourceRendererElement = React.ElementRef<'div'>;
-interface ResourceRendererProps extends PrimitiveDivProps {
+type ResourceRendererProps = {
   isLoading: boolean;
   error: string | null;
   data: any;
   // eslint-disable-next-line no-unused-vars
   children: <DataType>(data: DataType) => React.ReactElement;
-}
+};
 
-const ResourceRenderer = React.forwardRef<ResourceRendererElement, ResourceRendererProps>(
-  (props, forwardedRef) => {
-    const { isLoading, error, data, children, className, ...restProps } = props;
+export function ResourceRenderer({ isLoading, error, data, children }: ResourceRendererProps) {
+  if (isLoading) {
+    return <Loader isLoading={isLoading} />;
+  }
 
-    /** *************
-     * Loading state
-     */
-    if (isLoading) {
-      return <Loader isLoading={isLoading} />;
-    }
-
-    /** *************
-     * Error state
-     */
-    if (error) {
-      return (
-        <Alerter aria-atomic="true" aria-live="assertive" type="danger">
-          {error}
-        </Alerter>
-      );
-    }
-
-    /** ******************
-     * Resolve data state
-     */
+  if (error) {
     return (
-      <div
-        {...restProps}
-        className={`resource-renderer-container ${className ?? ''}`}
-        ref={forwardedRef}
-      >
-        {children(data)}
-      </div>
+      <Alerter aria-atomic="true" aria-live="assertive" type="danger">
+        {error}
+      </Alerter>
     );
   }
-);
 
-if (__dev__) {
-  ResourceRenderer.displayName = DISPLAY_NAME;
+  return children(data);
 }
-
-export { ResourceRenderer };
