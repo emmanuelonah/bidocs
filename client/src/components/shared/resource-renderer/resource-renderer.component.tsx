@@ -19,10 +19,16 @@ const ResourceRenderer = React.forwardRef<ResourceRendererElement, ResourceRende
   (props, forwardedRef) => {
     const { isLoading, error, data, children, className, ...restProps } = props;
 
+    /** *************
+     * Loading state
+     */
     if (isLoading) {
       return <Loader isLoading={isLoading} />;
     }
 
+    /** *************
+     * Error state
+     */
     if (error) {
       return (
         <Alerter aria-atomic="true" aria-live="assertive" type="danger">
@@ -31,6 +37,9 @@ const ResourceRenderer = React.forwardRef<ResourceRendererElement, ResourceRende
       );
     }
 
+    /** ******************
+     * Resolve data state
+     */
     return (
       <div
         {...restProps}
