@@ -1,27 +1,36 @@
-import { BrowserRouter, Route, Routes as Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
-import { ConfigAccessibility } from 'components/shared';
-import { ReactQuery, OptimisticUpdate, AdminHomePage, UserHomePage } from 'components/pages';
+import { Router } from './components/router.component';
+import { PrivateRoute } from 'components/shared';
 
 const PATHS = {
-  userHome: '/',
-  adminHome: '/admin',
+  home: '/',
+  login: '/login',
+  myLab: '/my-lab',
+  fallback: '/fallback',
   reactQueryHypothesis: '/hypothesis/react-query',
   reactQueryOptimisticUpdate: '/hypothesis/react-query/optimistic-update',
 } as const;
 
+const PAGE_PERMISSIONS = Object.freeze({
+  myLab: 1,
+});
+
 function Routes() {
   return (
-    <BrowserRouter>
-      <ConfigAccessibility />
-      <Switch>
-        <Route path={PATHS.userHome} element={<UserHomePage />} />
-        <Route path={PATHS.adminHome} element={<AdminHomePage />} />
-        <Route path={PATHS.reactQueryHypothesis} element={<ReactQuery />} />
-        <Route path={PATHS.reactQueryOptimisticUpdate} element={<OptimisticUpdate />} />
-      </Switch>
-    </BrowserRouter>
+    <Router>
+      <Route path={PATHS.login} element={<p>Welcome to login page</p>} />
+      <Route path={PATHS.fallback} element={<p>Welcome to Fallback page</p>} />
+      <Route
+        path={PATHS.myLab}
+        element={
+          <PrivateRoute pagePermissions={PAGE_PERMISSIONS.myLab}>
+            <p>Welcome to my Lab</p>
+          </PrivateRoute>
+        }
+      />
+    </Router>
   );
 }
 
-export { Routes, PATHS };
+export { PATHS, Routes };

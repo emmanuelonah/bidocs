@@ -1,1 +1,1 @@
-export * from './httpServices';
+export * from './http-services';

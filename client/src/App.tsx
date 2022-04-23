@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { ThemeProvider } from 'styled-components';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { QueryClientProvider, QueryClient } from 'react-query';

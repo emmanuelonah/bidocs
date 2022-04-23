@@ -8,7 +8,7 @@ const GlobalCss = createGlobalStyle<{ theme: typeof theme }>`
         --bidocs-font-size:16px;
         --bidocs-line-spacing:1.2;
         --bidocs-word-spacing:5;
-        --bidocs-background-color:#f3f3f3;
+        --bidocs-background-color:#fff;
         --bidocs-heading-color:#000;
         --bidocs-paragraph-color:#000;
     };

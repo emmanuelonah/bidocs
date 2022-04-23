@@ -1,0 +1,40 @@
+{
+  "data": {
+    "errors": [
+      {
+        "isError": true,
+        "details": [
+          "Consequuntur assumenda doloremque hic rerum. Voluptas natus rem sit dolorem. Aperiam deserunt ea temporibus.",
+          "Consequuntur assumenda doloremque hic rerum. Voluptas natus rem sit dolorem. Aperiam deserunt ea temporibus."
+        ],
+        "colno": 1,
+        "error": {
+          "status": 401,
+          "response": {
+            "message": "Error testing 1"
+          }
+        },
+        "filename": "c:\\user\\kfjguyheoifuhe9dsihfydfdheiudfv.js",
+        "lineno": 410,
+        "message": "Consequuntur assumenda doloremque hic rerum. Voluptas natus rem sit dolorem. Aperiam deserunt ea temporibus."
+      },
+      {
+        "isError": true,
+        "details": [
+          "Consequuntur assumenda doloremque hic rerum. Voluptas natus rem sit dolorem. Aperiam deserunt ea temporibus.",
+          "Consequuntur assumenda doloremque hic rerum. Voluptas natus rem sit dolorem. Aperiam deserunt ea temporibus."
+        ],
+        "colno": 1,
+        "error": {
+          "status": 401,
+          "response": {
+            "message": "Error testing 2"
+          }
+        },
+        "filename": "c:\\user\\kfjguyheoifuhe9dsihfydfdheiudfv.js",
+        "lineno": 410,
+        "message": "Consequuntur assumenda doloremque hic rerum. Voluptas natus rem sit dolorem. Aperiam deserunt ea temporibus."
+      }
+    ]
+  }
+}

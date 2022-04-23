@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { useForm } from 'hooks';
 import { composeEvent, __dev__ } from 'utils';
 import { Portal, Input } from 'components/shared';
 import { useAccessibility } from '../hooks/useAccessibility';
@@ -136,7 +135,7 @@ interface ConfigAccessibilityProps extends PrimitiveAsideProps {
 const ConfigUi = React.forwardRef<ConfigUiElement, ConfigAccessibilityProps>(
   ({ shown, onClose, ...restProp }, forwardedRef) => {
     const configUiFormRef = React.useRef<HTMLFormElement>(null);
-    const formData = useForm();
+
     const {
       data: { languages, inputs, configs },
       dispatch: { onConfigChange },
@@ -152,10 +151,10 @@ const ConfigUi = React.forwardRef<ConfigUiElement, ConfigAccessibilityProps>(
             ref={configUiFormRef}
             onSubmit={(ev) => {
               ev.preventDefault();
-              const values = [
-                ...formData(configUiFormRef as React.MutableRefObject<HTMLFormElement>).entries(),
-              ];
-              console.log(values);
+
+              if (__dev__) {
+                console.log(ev);
+              }
             }}
           >
             <RowOne>
@@ -187,9 +186,7 @@ const ConfigUi = React.forwardRef<ConfigUiElement, ConfigAccessibilityProps>(
                     value={configs[input.name as InputName]}
                     onChange={composeEvent(
                       (ev) => {
-                        onConfigChange(
-                          ev as React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-                        );
+                        onConfigChange(ev as React.ChangeEvent<HTMLInputElement | HTMLSelectElement>);
                       },
                       (ev) => {
                         input.onChange?.(ev as React.ChangeEvent<HTMLInputElement>);
@@ -213,9 +210,7 @@ const ConfigUi = React.forwardRef<ConfigUiElement, ConfigAccessibilityProps>(
                     value={configs[input.name as InputName]}
                     onChange={composeEvent(
                       (ev) => {
-                        onConfigChange(
-                          ev as React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-                        );
+                        onConfigChange(ev as React.ChangeEvent<HTMLInputElement | HTMLSelectElement>);
                       },
                       (ev) => {
                         input.onChange?.(ev as React.ChangeEvent<HTMLInputElement>);
