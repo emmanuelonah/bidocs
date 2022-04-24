@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { composeEvent, __dev__ } from 'utils';
+import { composeEvents, __dev__ } from 'utils';
 import { Portal, Input } from 'components/shared';
 import { useAccessibility } from '../hooks/useAccessibility';
 import { AccessibleIcon } from 'components/shared/accessible-icon/accessible-icon.component';
@@ -184,7 +184,7 @@ const ConfigUi = React.forwardRef<ConfigUiElement, ConfigAccessibilityProps>(
                     id={input.id}
                     name={input.name}
                     value={configs[input.name as InputName]}
-                    onChange={composeEvent(
+                    onChange={composeEvents(
                       (ev) => {
                         onConfigChange(ev as React.ChangeEvent<HTMLInputElement | HTMLSelectElement>);
                       },
@@ -208,7 +208,7 @@ const ConfigUi = React.forwardRef<ConfigUiElement, ConfigAccessibilityProps>(
                     name={input.name}
                     inputMode="numeric"
                     value={configs[input.name as InputName]}
-                    onChange={composeEvent(
+                    onChange={composeEvents(
                       (ev) => {
                         onConfigChange(ev as React.ChangeEvent<HTMLInputElement | HTMLSelectElement>);
                       },

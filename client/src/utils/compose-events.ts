@@ -3,9 +3,9 @@ import React from 'react';
 
 type CustomEvent = Event | React.SyntheticEvent;
 
-function composeEvent<EventReturnType>(
+export function composeEvents<EventReturnType>(
   ourEvent: (ev: CustomEvent) => EventReturnType,
-  theirEvent?: (ev: CustomEvent) => EventReturnType
+  theirEvent?: (ev: CustomEvent | any) => EventReturnType
 ) {
   return (ev: CustomEvent) => {
     if (!ev.defaultPrevented) ourEvent(ev);
@@ -13,5 +13,3 @@ function composeEvent<EventReturnType>(
     if (theirEvent) theirEvent(ev);
   };
 }
-
-export { composeEvent };

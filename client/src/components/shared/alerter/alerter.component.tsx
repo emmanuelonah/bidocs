@@ -37,11 +37,9 @@ interface AlertProps extends PrimitiveDivProps {
   type: 'success' | 'warning' | 'danger';
 }
 
-const Alerter = React.forwardRef<AlertElement, AlertProps>(
-  ({ type, ...restProps }, forwardedRef) => (
-    <Container {...restProps} ref={forwardedRef} role="alert" data-variant={type} />
-  )
-);
+const Alerter = React.forwardRef<AlertElement, AlertProps>(({ type, ...restProps }, forwardedRef) => (
+  <Container {...restProps} ref={forwardedRef} role="alert" data-variant={type} />
+));
 
 if (__dev__) {
   Alerter.displayName = DISPLAY_NAME;

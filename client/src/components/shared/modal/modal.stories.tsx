@@ -1,9 +1,7 @@
-import React from 'react';
-import { ThemeProvider } from 'styled-components';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import Modal from './modal.component';
-import { __storybook__, theme } from 'utils';
+import { __storybook__ } from 'utils';
 
 const details = [
   '401 - something: "wrong wrong"',
@@ -18,29 +16,23 @@ export default {
 } as ComponentMeta<typeof Modal>;
 
 export const SuccessModal: ComponentStory<typeof Modal> = () => (
-  <ThemeProvider theme={theme}>
-    <Modal type="success">
-      <Modal.Header>Header Success</Modal.Header>
-      <Modal.Body message={message} details={details} />
-    </Modal>
-  </ThemeProvider>
+  <Modal type="success">
+    <Modal.Header>Header Success</Modal.Header>
+    <Modal.Body message={message} details={details} />
+  </Modal>
 );
 
 export const WarningModal: ComponentStory<typeof Modal> = () => (
-  <ThemeProvider theme={theme}>
-    <Modal type="warning">
-      <Modal.Header>Header Warning</Modal.Header>
-      <Modal.Body message={message} />
-    </Modal>
-  </ThemeProvider>
+  <Modal type="warning">
+    <Modal.Header>Header Warning</Modal.Header>
+    <Modal.Body message={message} />
+  </Modal>
 );
 
 export const DangerModal: ComponentStory<typeof Modal> = () => (
-  <ThemeProvider theme={theme}>
-    <Modal type="danger">
-      <Modal.Header>Header Danger</Modal.Header>
-      <Modal.Body message={message} />
-      <Modal.Footer>Footer Danger</Modal.Footer>
-    </Modal>
-  </ThemeProvider>
+  <Modal type="danger">
+    <Modal.Header>Header Danger</Modal.Header>
+    <Modal.Body message={message} />
+    <Modal.Footer>Footer Danger</Modal.Footer>
+  </Modal>
 );

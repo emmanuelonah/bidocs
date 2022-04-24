@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { __dev__, composeEvent } from 'utils';
+import { __dev__, composeEvents } from 'utils';
 import { useTabContext } from '../tab.component';
 
 const DISPLAY_NAME = 'TabControl';
@@ -23,7 +23,7 @@ const TabControl = React.forwardRef<TabControlElement, TabControlProps>((props, 
       aria-controls={panelId}
       aria-selected={isSelected}
       tabIndex={isSelected ? 0 : -1}
-      onClick={composeEvent(
+      onClick={composeEvents(
         React.useCallback(() => {
           setIsSelected((preState) => !preState);
         }, [setIsSelected]),

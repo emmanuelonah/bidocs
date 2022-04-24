@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useArraySize } from 'hooks';
-import { composeEvent, __dev__ } from 'utils';
+import { composeEvents, __dev__ } from 'utils';
 import { useTableContext } from '../table.component';
 
 const DISPLAY_NAME = 'TPaginationPrevious';
@@ -12,8 +12,7 @@ interface TPaginationPreviousProps extends PrimitiveButtonProps {}
 
 const TPaginationPrevious = React.forwardRef<TPaginationPreviousELement, TPaginationPreviousProps>(
   (props, forwardedRef) => {
-    const { currentPage, setCurrentPage, rowCount, pages, data, updateCurrentData } =
-      useTableContext();
+    const { currentPage, setCurrentPage, rowCount, pages, data, updateCurrentData } = useTableContext();
     const getIndexBaseSize = useArraySize();
 
     const onPrevious = React.useCallback(() => {
@@ -23,10 +22,10 @@ const TPaginationPrevious = React.forwardRef<TPaginationPreviousELement, TPagina
         const startIndex = getIndexBaseSize(rowCount * currentPage);
         const endIndex = getIndexBaseSize(rowCount * latestPage);
 
-        /**
-         * @param {any[]} _currentData =>
+        /** ************************************************************************
+         * @param {any[]} _currentData
          * passing _currentData is for handling frontend pagination if necessary
-         */
+         ************************************************************************* */
         const _currentData = isWholeDataSentToClient ? data.slice(startIndex, endIndex) : data;
 
         updateCurrentData?.(latestPage, _currentData);
@@ -41,7 +40,7 @@ const TPaginationPrevious = React.forwardRef<TPaginationPreviousELement, TPagina
         type="button"
         ref={forwardedRef}
         disabled={currentPage === pages}
-        onClick={composeEvent(onPrevious, (ev) => {
+        onClick={composeEvents(onPrevious, (ev) => {
           if (props.onClick) props.onClick(ev as React.MouseEvent<HTMLButtonElement>);
         })}
       />
