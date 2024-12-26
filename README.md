@@ -2,6 +2,4 @@
 
 Accessibility Configurator is an accessibility tool that can be plugged into a web app as a module and it will help manage your web accessibility like text, colour, and audio control.
 
-![Bidocs page when error is encountered](https://i.ibb.co/1RKQ6CZ/one.png "Bidocs UI")
 ![Bidocs page when error is encountered](https://i.ibb.co/cb2H4Hm/three.png "Bidocs UI")
-![Bidocs page when error is encountered](https://i.ibb.co/BcXrvVM/two.png "Bidocs UI")
